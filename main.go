@@ -2,12 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
+	"path"
 )
 
-var httpUrl = []string{
+var httpUrls = []string{
 	"https://api.vultisig.com/1inch/swap/v6.0/1/tokens",
 	"https://api.vultisig.com/1inch/swap/v6.0/43114/tokens",
 	"https://api.vultisig.com/1inch/swap/v6.0/8453/tokens",
@@ -34,41 +36,43 @@ type TokenData struct {
 	Tokens map[string]Token `json:"tokens"`
 }
 
-func main() {
+func fetchAndProcessURL(url, name string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
 
-	for _, url := range httpUrl {
-
-		jsonToken, err := http.Get(url)
-		if err != nil {
-			return
-		}
-
-		body, err := io.ReadAll(jsonToken.Body)
-		if err != nil {
-
-			return
-		}
-
-		var tokenData TokenData
-		err = json.Unmarshal(body, &tokenData)
-		if err != nil {
-
-			return
-		}
-		for address, token := range tokenData.Tokens {
-			token.CmcID = ""
-			tokenData.Tokens[address] = token
-		}
-
-		updatedBody, err := json.MarshalIndent(tokenData, "", "  ")
-		if err != nil {
-			return
-		}
-
-		err = os.WriteFile("tokens_output.json", updatedBody, 0644)
-		if err != nil {
-			return
-		}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
 	}
 
+	var tokenData TokenData
+	if err := json.Unmarshal(body, &tokenData); err != nil {
+		return err
+	}
+
+	updatedBody, err := json.MarshalIndent(tokenData, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	err = os.WriteFile(name, updatedBody, 0644)
+	if err != nil {
+		fmt.Print("hello")
+	}
+
+	return nil
+}
+
+func main() {
+	coout := 1
+	for _, url := range httpUrls {
+		nameFileJson := fmt.Sprintf("%s%d.json", path.Base(url), coout)
+		if err := fetchAndProcessURL(url, nameFileJson); err != nil {
+			fmt.Printf("Error processing URL %s: %v\n", url, err)
+		}
+		coout++
+	}
 }
