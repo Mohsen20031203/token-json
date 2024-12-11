@@ -7,18 +7,119 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"strings"
+	"time"
 )
 
-var httpUrls = []string{
-	"https://api.vultisig.com/1inch/swap/v6.0/1/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/43114/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/8453/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/81457/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/42161/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/137/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/10/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/56/tokens",
-	"https://api.vultisig.com/1inch/swap/v6.0/25/tokens",
+type Chain int
+
+const (
+	Ethereum Chain = iota
+	Avalanche
+	Base
+	Blast
+	Arbitrum
+	Polygon
+	Optimism
+	BscChain
+	CronosChain
+)
+
+func (c Chain) GetOneInchChainId() int {
+	if c == Ethereum {
+		return 1
+	}
+	if c == Avalanche {
+		return 43114
+	}
+	if c == Base {
+		return 8453
+	}
+	if c == Blast {
+		return 81457
+	}
+	if c == Arbitrum {
+		return 42161
+	}
+	if c == Polygon {
+		return 137
+	}
+	if c == Optimism {
+		return 10
+	}
+	if c == BscChain {
+		return 56
+	}
+	if c == CronosChain {
+		return 25
+	}
+	return 0
+}
+func (c Chain) GetCMCName() string {
+	if c == Ethereum {
+		return "Ethereum"
+	}
+	if c == Avalanche {
+		return "Avalanche"
+	}
+	if c == Base {
+		return "Base"
+	}
+	if c == Arbitrum {
+		return "Arbitrum"
+	}
+	if c == Polygon {
+		return "Polygon"
+	}
+	if c == Optimism {
+		return "Optimism"
+	}
+	if c == BscChain {
+		return "BSC"
+	}
+	return ""
+}
+
+type TokenPairResponse struct {
+	Data struct {
+		Total int `json:"total"`
+		Pairs []struct {
+			PlatformID          int    `json:"platformId"`
+			PlatformName        string `json:"platformName"`
+			BaseTokenSymbol     string `json:"baseTokenSymbol"`
+			QuoteTokenSymbol    string `json:"quoteTokenSymbol"`
+			Liquidity           string `json:"liquidity"`
+			PairContractAddress string `json:"pairContractAddress"`
+			PlatFormCryptoID    int    `json:"platFormCryptoId"`
+			ExchangeID          int    `json:"exchangeId"`
+			PoolID              string `json:"poolId"`
+			BaseTokenName       string `json:"baseTokenName"`
+			MarketCap           string `json:"marketCap"`
+			PriceUsd            string `json:"priceUsd"`
+			PriceChange24H      string `json:"priceChange24h"`
+			BaseToken           struct {
+				ID           int    `json:"id,string"`
+				Name         string `json:"name"`
+				Address      string `json:"address"`
+				Symbol       string `json:"symbol"`
+				Slug         string `json:"slug"`
+				CryptoSymbol string `json:"cryptoSymbol"`
+				Decimals     int    `json:"decimals"`
+			} `json:"baseToken"`
+			QuoteToken struct {
+				ID           int    `json:"id,string"`
+				Name         string `json:"name"`
+				Address      string `json:"address"`
+				Symbol       string `json:"symbol"`
+				Slug         string `json:"slug"`
+				CryptoSymbol string `json:"cryptoSymbol"`
+				Decimals     int    `json:"decimals"`
+			} `json:"quoteToken"`
+			Volume24H      string `json:"volume24h"`
+			VolumeQuote24H string `json:"volumeQuote24h"`
+			PlatformIcon   string `json:"platformIcon"`
+		} `json:"pairs"`
+	} `json:"data"`
 }
 
 type Token struct {
@@ -29,50 +130,109 @@ type Token struct {
 	LogoURI  string   `json:"logoURI"`
 	EIP2612  bool     `json:"eip2612"`
 	Tags     []string `json:"tags"`
-	CmcID    string   `json:"CmcID"`
+	CmcID    int      `json:"CmcID,string"`
 }
 
 type TokenData struct {
 	Tokens map[string]Token `json:"tokens"`
 }
 
-func fetchAndProcessURL(url, name string) error {
+func fetchAndProcessURL(ch Chain) (TokenData, error) {
+
+	url := fmt.Sprintf("https://api.vultisig.com/1inch/swap/v6.0/%v/tokens", ch.GetOneInchChainId())
 	resp, err := http.Get(url)
 	if err != nil {
-		return err
+		return TokenData{}, err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return TokenData{}, err
 	}
 
 	var tokenData TokenData
 	if err := json.Unmarshal(body, &tokenData); err != nil {
-		return err
+		return TokenData{}, err
 	}
+
+	return tokenData, nil
+}
+
+func main() {
+	coine := Ethereum
+	var tokenData TokenData
+	var err error
+	if tokenData, err = fetchAndProcessURL(coine); err != nil {
+		fmt.Printf("Error processing URL %s: %v\n", "coine", err)
+	}
+	for key := range tokenData.Tokens {
+		time.Sleep(time.Second * 1)
+		cmcid, err := fetchTokenPrice(coine, tokenData.Tokens[key].Address)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(cmcid)
+
+		token := tokenData.Tokens[key]
+		token.CmcID = cmcid
+		tokenData.Tokens[key] = token
+	}
+
+	createJson(tokenData, coine)
+
+}
+
+func createJson(tokenData TokenData, ch Chain) error {
+	url := fmt.Sprintf("https://api.vultisig.com/1inch/swap/v6.0/%v/tokens", ch.GetOneInchChainId())
 
 	updatedBody, err := json.MarshalIndent(tokenData, "", "  ")
 	if err != nil {
 		return err
 	}
 
-	err = os.WriteFile(name, updatedBody, 0644)
-	if err != nil {
-		fmt.Print("hello")
-	}
+	nameFileJson := fmt.Sprintf("%s%s.json", path.Base(url), ch.GetCMCName())
 
+	err = os.WriteFile(nameFileJson, updatedBody, 0644)
+	if err != nil {
+		fmt.Print("error in Write to file json")
+		return err
+	}
 	return nil
+
 }
 
-func main() {
-	coout := 1
-	for _, url := range httpUrls {
-		nameFileJson := fmt.Sprintf("%s%d.json", path.Base(url), coout)
-		if err := fetchAndProcessURL(url, nameFileJson); err != nil {
-			fmt.Printf("Error processing URL %s: %v\n", url, err)
-		}
-		coout++
+func fetchTokenPrice(ch Chain, address string) (int, error) {
+	var tokenData TokenPairResponse
+
+	apiUrl := fmt.Sprintf("https://api.coinmarketcap.com/dexer/v3/dexer/search/main-site?keyword=%s&all=false", address)
+	resp, err := http.Get(apiUrl)
+	if err != nil {
+		return 0, err
 	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0, err
+	}
+
+	if err := json.Unmarshal(body, &tokenData); err != nil {
+		fmt.Print(body)
+		return 0, err
+	}
+
+	for _, pair := range tokenData.Data.Pairs {
+		if pair.PlatformName == ch.GetCMCName() {
+			if strings.EqualFold(pair.BaseToken.Address, address) {
+				return pair.BaseToken.ID, nil
+			}
+			if strings.EqualFold(pair.QuoteToken.Address, address) {
+				return pair.QuoteToken.ID, nil
+			}
+		}
+
+	}
+	return 0, nil
+
 }
