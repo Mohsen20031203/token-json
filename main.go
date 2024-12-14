@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"path"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -55,6 +55,7 @@ func (c Chain) GetOneInchChainId() int {
 	}
 	return 0
 }
+
 func (c Chain) GetCMCName() string {
 	if c == Ethereum {
 		return "Ethereum"
@@ -130,7 +131,7 @@ type Token struct {
 	LogoURI  string   `json:"logoURI"`
 	EIP2612  bool     `json:"eip2612"`
 	Tags     []string `json:"tags"`
-	CmcID    int      `json:"CmcID,string"`
+	CmcID    string   `json:"CmcID"`
 }
 
 type TokenData struct {
@@ -158,15 +159,28 @@ func fetchAndProcessURL(ch Chain) (TokenData, error) {
 
 	return tokenData, nil
 }
-
 func main() {
-	coine := Ethereum
+	coine := Polygon
 	var tokenData TokenData
 	var err error
-	if tokenData, err = fetchAndProcessURL(coine); err != nil {
-		fmt.Printf("Error processing URL %s: %v\n", "coine", err)
+	nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
+	file, err := os.OpenFile(nameFile, os.O_RDWR, 0644)
+	if err != nil {
+		panic(err)
 	}
-	for key := range tokenData.Tokens {
+	defer file.Close()
+
+	decoder := json.NewDecoder(file)
+	if err := decoder.Decode(&tokenData); err != nil {
+		panic(err)
+	}
+
+	for key, value := range tokenData.Tokens {
+
+		if value.CmcID != "" {
+			continue
+		}
+
 		time.Sleep(time.Second * 1)
 		cmcid, err := fetchTokenPrice(coine, tokenData.Tokens[key].Address)
 		if err != nil {
@@ -175,30 +189,17 @@ func main() {
 		fmt.Println(cmcid)
 
 		token := tokenData.Tokens[key]
-		token.CmcID = cmcid
+		token.CmcID = strconv.Itoa(cmcid)
 		tokenData.Tokens[key] = token
+
+		file.Seek(0, 0)
+		file.Truncate(0)
+		encoder := json.NewEncoder(file)
+		encoder.SetIndent("", "  ")
+		if err := encoder.Encode(tokenData); err != nil {
+			panic(fmt.Sprintf("Error encoding JSON: %v", err))
+		}
 	}
-
-	createJson(tokenData, coine)
-
-}
-
-func createJson(tokenData TokenData, ch Chain) error {
-	url := fmt.Sprintf("https://api.vultisig.com/1inch/swap/v6.0/%v/tokens", ch.GetOneInchChainId())
-
-	updatedBody, err := json.MarshalIndent(tokenData, "", "  ")
-	if err != nil {
-		return err
-	}
-
-	nameFileJson := fmt.Sprintf("%s%s.json", path.Base(url), ch.GetCMCName())
-
-	err = os.WriteFile(nameFileJson, updatedBody, 0644)
-	if err != nil {
-		fmt.Print("error in Write to file json")
-		return err
-	}
-	return nil
 
 }
 
