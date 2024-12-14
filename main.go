@@ -160,7 +160,7 @@ func fetchAndProcessURL(ch Chain) (TokenData, error) {
 	return tokenData, nil
 }
 func main() {
-	coine := Arbitrum
+	coine := Ethereum
 	var tokenData TokenData
 	var err error
 	nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
@@ -206,6 +206,9 @@ func main() {
 				if strings.Contains(err.Error(), "error for request api https://api.coinmarketcap.com") {
 					fmt.Println(err)
 					time.Sleep(time.Second * 20)
+					if i == 4 {
+						return
+					}
 					continue
 				} else {
 					fmt.Println(err)
