@@ -160,19 +160,32 @@ func fetchAndProcessURL(ch Chain) (TokenData, error) {
 	return tokenData, nil
 }
 func main() {
-	coine := Polygon
+	coine := Ethereum
 	var tokenData TokenData
 	var err error
 	nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
-	file, err := os.OpenFile(nameFile, os.O_RDWR, 0644)
+	file, err := os.OpenFile(nameFile, os.O_RDWR|os.O_CREATE, 0644)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error opening/creating file:", err)
+		return
 	}
 	defer file.Close()
 
-	decoder := json.NewDecoder(file)
-	if err := decoder.Decode(&tokenData); err != nil {
-		panic(err)
+	fileInfo, err := file.Stat()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	if fileInfo.Size() == 0 {
+		tokenData, err = fetchAndProcessURL(coine)
+		if err != nil {
+			return
+		}
+	} else {
+		decoder := json.NewDecoder(file)
+		if err := decoder.Decode(&tokenData); err != nil {
+			fmt.Println(err)
+		}
 	}
 
 	for key, value := range tokenData.Tokens {
@@ -180,11 +193,27 @@ func main() {
 		if value.CmcID != "" {
 			continue
 		}
+		var cmcid int
 
 		time.Sleep(time.Second * 1)
-		cmcid, err := fetchTokenPrice(coine, tokenData.Tokens[key].Address)
-		if err != nil {
-			panic(err)
+
+		for i := 0; i < 5; i++ {
+
+			cmcid, err = fetchTokenPrice(coine, tokenData.Tokens[key].Address)
+			if err != nil {
+
+				if strings.Contains(err.Error(), "error for request api https://api.coinmarketcap.com") {
+					fmt.Println(err)
+					time.Sleep(time.Second * 10)
+					continue
+				} else {
+					fmt.Println(err)
+					return
+
+				}
+
+			}
+			break
 		}
 		fmt.Println(cmcid)
 
@@ -197,7 +226,7 @@ func main() {
 		encoder := json.NewEncoder(file)
 		encoder.SetIndent("", "  ")
 		if err := encoder.Encode(tokenData); err != nil {
-			panic(fmt.Sprintf("Error encoding JSON: %v", err))
+			fmt.Println(err)
 		}
 	}
 
@@ -208,8 +237,8 @@ func fetchTokenPrice(ch Chain, address string) (int, error) {
 
 	apiUrl := fmt.Sprintf("https://api.coinmarketcap.com/dexer/v3/dexer/search/main-site?keyword=%s&all=false", address)
 	resp, err := http.Get(apiUrl)
-	if err != nil {
-		return 0, err
+	if err != nil || resp.StatusCode >= 400 {
+		return 0, fmt.Errorf("error for request api %s", apiUrl)
 	}
 	defer resp.Body.Close()
 
