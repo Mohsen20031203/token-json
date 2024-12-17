@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"my-echo-app/utils"
 	"net/http"
 	"os"
 	"strconv"
@@ -93,48 +94,6 @@ func (c Chain) GetCMCName() string {
 	return ""
 }
 
-type TokenPairResponse struct {
-	Data struct {
-		Total int `json:"total"`
-		Pairs []struct {
-			PlatformID          int    `json:"platformId"`
-			PlatformName        string `json:"platformName"`
-			BaseTokenSymbol     string `json:"baseTokenSymbol"`
-			QuoteTokenSymbol    string `json:"quoteTokenSymbol"`
-			Liquidity           string `json:"liquidity"`
-			PairContractAddress string `json:"pairContractAddress"`
-			PlatFormCryptoID    int    `json:"platFormCryptoId"`
-			ExchangeID          int    `json:"exchangeId"`
-			PoolID              string `json:"poolId"`
-			BaseTokenName       string `json:"baseTokenName"`
-			MarketCap           string `json:"marketCap"`
-			PriceUsd            string `json:"priceUsd"`
-			PriceChange24H      string `json:"priceChange24h"`
-			BaseToken           struct {
-				ID           int    `json:"id,string"`
-				Name         string `json:"name"`
-				Address      string `json:"address"`
-				Symbol       string `json:"symbol"`
-				Slug         string `json:"slug"`
-				CryptoSymbol string `json:"cryptoSymbol"`
-				Decimals     int    `json:"decimals"`
-			} `json:"baseToken"`
-			QuoteToken struct {
-				ID           int    `json:"id,string"`
-				Name         string `json:"name"`
-				Address      string `json:"address"`
-				Symbol       string `json:"symbol"`
-				Slug         string `json:"slug"`
-				CryptoSymbol string `json:"cryptoSymbol"`
-				Decimals     int    `json:"decimals"`
-			} `json:"quoteToken"`
-			Volume24H      string `json:"volume24h"`
-			VolumeQuote24H string `json:"volumeQuote24h"`
-			PlatformIcon   string `json:"platformIcon"`
-		} `json:"pairs"`
-	} `json:"data"`
-}
-
 type Token struct {
 	Address  string   `json:"address"`
 	Symbol   string   `json:"symbol"`
@@ -146,27 +105,23 @@ type Token struct {
 	CmcID    string   `json:"CmcID"`
 }
 
-type TokenData struct {
-	Tokens map[string]Token `json:"tokens"`
-}
-
-func fetchAndProcessURL(ch Chain) (TokenData, error) {
+func fetchAndProcessURL(ch Chain) (utils.TokenData, error) {
 
 	url := fmt.Sprintf("https://api.vultisig.com/1inch/swap/v6.0/%v/tokens", ch.GetOneInchChainId())
 	resp, err := http.Get(url)
 	if err != nil {
-		return TokenData{}, err
+		return utils.TokenData{}, err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return TokenData{}, err
+		return utils.TokenData{}, err
 	}
 
-	var tokenData TokenData
+	var tokenData utils.TokenData
 	if err := json.Unmarshal(body, &tokenData); err != nil {
-		return TokenData{}, err
+		return utils.TokenData{}, err
 	}
 
 	return tokenData, nil
@@ -185,7 +140,7 @@ func main() {
 	}
 	for _, nameChain := range ch {
 		coine := nameChain
-		var tokenData TokenData
+		var tokenData utils.TokenData
 		var err error
 		nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
 		file, err := os.OpenFile(nameFile, os.O_RDWR|os.O_CREATE, 0644)
@@ -206,10 +161,7 @@ func main() {
 				return
 			}
 		} else {
-			decoder := json.NewDecoder(file)
-			if err := decoder.Decode(&tokenData); err != nil {
-				fmt.Println(err)
-			}
+			utils.ReadFile(file, &tokenData)
 		}
 		var numberWrite int
 
@@ -252,29 +204,16 @@ func main() {
 			numberWrite++
 			if numberWrite > 20 {
 				numberWrite = 0
-				file.Seek(0, 0)
-				file.Truncate(0)
-				encoder := json.NewEncoder(file)
-				encoder.SetIndent("", "  ")
-				if err := encoder.Encode(tokenData); err != nil {
-					fmt.Println(err)
-				}
+				utils.WriteFile(file, &tokenData)
 			}
 		}
-		numberWrite = 0
-		file.Seek(0, 0)
-		file.Truncate(0)
-		encoder := json.NewEncoder(file)
-		encoder.SetIndent("", "  ")
-		if err := encoder.Encode(tokenData); err != nil {
-			fmt.Println(err)
-		}
+		utils.WriteFile(file, &tokenData)
 	}
 
 }
 
 func fetchTokenPrice(ch Chain, address string) (int, error) {
-	var tokenData TokenPairResponse
+	var tokenData utils.TokenPairResponse
 
 	apiUrl := fmt.Sprintf("https://api.coinmarketcap.com/dexer/v3/dexer/search/main-site?keyword=%s&all=false", address)
 	resp, err := http.Get(apiUrl)
