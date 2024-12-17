@@ -113,6 +113,7 @@ func fetchAndProcessURL(ch Chain) (utils.TokenData, error) {
 
 	return tokenData, nil
 }
+
 func main() {
 	ch := []Chain{
 		Ethereum,
@@ -126,10 +127,11 @@ func main() {
 		//CronosChain,
 	}
 	for _, nameChain := range ch {
-		coine := nameChain
 		var tokenData utils.TokenData
 		var err error
-		nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
+		var numberWrite int
+
+		nameFile := fmt.Sprintf("tokens%v.json", nameChain.GetCMCName())
 		file, err := os.OpenFile(nameFile, os.O_RDWR|os.O_CREATE, 0644)
 		if err != nil {
 			fmt.Println("Error opening/creating file:", err)
@@ -143,14 +145,13 @@ func main() {
 		}
 
 		if fileInfo.Size() == 0 {
-			tokenData, err = fetchAndProcessURL(coine)
+			tokenData, err = fetchAndProcessURL(nameChain)
 			if err != nil {
 				return
 			}
 		} else {
 			utils.ReadFile(file, &tokenData)
 		}
-		var numberWrite int
 
 		for key, value := range tokenData.Tokens {
 
@@ -163,7 +164,7 @@ func main() {
 
 			for i := 0; i < 5; i++ {
 
-				cmcid, err = fetchTokenPrice(coine, tokenData.Tokens[key].Address)
+				cmcid, err = fetchTokenPrice(nameChain, tokenData.Tokens[key].Address)
 				if err != nil {
 
 					if strings.Contains(err.Error(), "error for request api https://api.coinmarketcap.com") {
