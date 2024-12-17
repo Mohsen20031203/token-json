@@ -36,9 +36,11 @@ func (c Chain) GetOneInchChainId() int {
 	if c == Base {
 		return 8453
 	}
-	/*if c == Blast {
-		return 81457
-	}*/
+
+	//if c == Blast {
+	//	return 81457
+	//}
+
 	if c == Arbitrum {
 		return 42161
 	}
@@ -51,11 +53,10 @@ func (c Chain) GetOneInchChainId() int {
 	if c == BscChain {
 		return 56
 	}
-	/*
-		if c == CronosChain {
-			return 25
-		}
-	*/
+	//if c == CronosChain {
+	//	return 25
+	//}
+
 	return 0
 }
 
@@ -69,11 +70,9 @@ func (c Chain) GetCMCName() string {
 	if c == Base {
 		return "Base"
 	}
-	/*
-		if c == Blast {
-			return ?
-		}
-	*/
+	//if c == Blast {
+	//	return ?
+	//}
 	if c == Arbitrum {
 		return "Arbitrum"
 	}
@@ -86,23 +85,11 @@ func (c Chain) GetCMCName() string {
 	if c == BscChain {
 		return "BSC"
 	}
-	/*
-		if c == CronosChain {
-			return ?
-		}
-	*/
-	return ""
-}
 
-type Token struct {
-	Address  string   `json:"address"`
-	Symbol   string   `json:"symbol"`
-	Decimals int      `json:"decimals"`
-	Name     string   `json:"name"`
-	LogoURI  string   `json:"logoURI"`
-	EIP2612  bool     `json:"eip2612"`
-	Tags     []string `json:"tags"`
-	CmcID    string   `json:"CmcID"`
+	//if c == CronosChain {
+	//	return ?
+	//}
+	return ""
 }
 
 func fetchAndProcessURL(ch Chain) (utils.TokenData, error) {
@@ -189,9 +176,7 @@ func main() {
 					} else {
 						fmt.Println(err)
 						return
-
 					}
-
 				}
 				break
 			}
