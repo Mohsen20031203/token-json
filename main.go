@@ -17,12 +17,12 @@ const (
 	Ethereum Chain = iota
 	Avalanche
 	Base
-	Blast
+	//Blast
 	Arbitrum
 	Polygon
 	Optimism
 	BscChain
-	CronosChain
+	//CronosChain
 )
 
 func (c Chain) GetOneInchChainId() int {
@@ -35,9 +35,9 @@ func (c Chain) GetOneInchChainId() int {
 	if c == Base {
 		return 8453
 	}
-	if c == Blast {
+	/*if c == Blast {
 		return 81457
-	}
+	}*/
 	if c == Arbitrum {
 		return 42161
 	}
@@ -50,9 +50,11 @@ func (c Chain) GetOneInchChainId() int {
 	if c == BscChain {
 		return 56
 	}
-	if c == CronosChain {
-		return 25
-	}
+	/*
+		if c == CronosChain {
+			return 25
+		}
+	*/
 	return 0
 }
 
@@ -66,6 +68,11 @@ func (c Chain) GetCMCName() string {
 	if c == Base {
 		return "Base"
 	}
+	/*
+		if c == Blast {
+			return ?
+		}
+	*/
 	if c == Arbitrum {
 		return "Arbitrum"
 	}
@@ -78,6 +85,11 @@ func (c Chain) GetCMCName() string {
 	if c == BscChain {
 		return "BSC"
 	}
+	/*
+		if c == CronosChain {
+			return ?
+		}
+	*/
 	return ""
 }
 
@@ -160,90 +172,103 @@ func fetchAndProcessURL(ch Chain) (TokenData, error) {
 	return tokenData, nil
 }
 func main() {
-	coine := Ethereum
-	var tokenData TokenData
-	var err error
-	nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
-	file, err := os.OpenFile(nameFile, os.O_RDWR|os.O_CREATE, 0644)
-	if err != nil {
-		fmt.Println("Error opening/creating file:", err)
-		return
+	ch := []Chain{
+		Ethereum,
+		Avalanche,
+		Base,
+		//Blast,
+		Arbitrum,
+		Polygon,
+		Optimism,
+		BscChain,
+		//CronosChain,
 	}
-	defer file.Close()
-
-	fileInfo, err := file.Stat()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	if fileInfo.Size() == 0 {
-		tokenData, err = fetchAndProcessURL(coine)
+	for _, nameChain := range ch {
+		coine := nameChain
+		var tokenData TokenData
+		var err error
+		nameFile := fmt.Sprintf("tokens%v.json", coine.GetCMCName())
+		file, err := os.OpenFile(nameFile, os.O_RDWR|os.O_CREATE, 0644)
 		if err != nil {
+			fmt.Println("Error opening/creating file:", err)
 			return
 		}
-	} else {
-		decoder := json.NewDecoder(file)
-		if err := decoder.Decode(&tokenData); err != nil {
+		defer file.Close()
+
+		fileInfo, err := file.Stat()
+		if err != nil {
 			fmt.Println(err)
 		}
-	}
-	var numberWrite int
 
-	for key, value := range tokenData.Tokens {
-
-		if value.CmcID != "" {
-			continue
-		}
-
-		var cmcid int
-		time.Sleep(time.Second * 1)
-
-		for i := 0; i < 5; i++ {
-
-			cmcid, err = fetchTokenPrice(coine, tokenData.Tokens[key].Address)
+		if fileInfo.Size() == 0 {
+			tokenData, err = fetchAndProcessURL(coine)
 			if err != nil {
-
-				if strings.Contains(err.Error(), "error for request api https://api.coinmarketcap.com") {
-					fmt.Println(err)
-					time.Sleep(time.Second * 20)
-					if i == 4 {
-						return
-					}
-					continue
-				} else {
-					fmt.Println(err)
-					return
-
-				}
-
+				return
 			}
-			break
-		}
-		fmt.Println(cmcid)
-
-		token := tokenData.Tokens[key]
-		token.CmcID = strconv.Itoa(cmcid)
-		tokenData.Tokens[key] = token
-
-		numberWrite++
-		if numberWrite > 20 {
-			numberWrite = 0
-			file.Seek(0, 0)
-			file.Truncate(0)
-			encoder := json.NewEncoder(file)
-			encoder.SetIndent("", "  ")
-			if err := encoder.Encode(tokenData); err != nil {
+		} else {
+			decoder := json.NewDecoder(file)
+			if err := decoder.Decode(&tokenData); err != nil {
 				fmt.Println(err)
 			}
 		}
-	}
-	numberWrite = 0
-	file.Seek(0, 0)
-	file.Truncate(0)
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(tokenData); err != nil {
-		fmt.Println(err)
+		var numberWrite int
+
+		for key, value := range tokenData.Tokens {
+
+			if value.CmcID != "" {
+				continue
+			}
+
+			var cmcid int
+			time.Sleep(time.Second * 1)
+
+			for i := 0; i < 5; i++ {
+
+				cmcid, err = fetchTokenPrice(coine, tokenData.Tokens[key].Address)
+				if err != nil {
+
+					if strings.Contains(err.Error(), "error for request api https://api.coinmarketcap.com") {
+						fmt.Println(err)
+						time.Sleep(time.Second * 20)
+						if i == 4 {
+							return
+						}
+						continue
+					} else {
+						fmt.Println(err)
+						return
+
+					}
+
+				}
+				break
+			}
+			fmt.Println(cmcid)
+
+			token := tokenData.Tokens[key]
+			token.CmcID = strconv.Itoa(cmcid)
+			tokenData.Tokens[key] = token
+
+			numberWrite++
+			if numberWrite > 20 {
+				numberWrite = 0
+				file.Seek(0, 0)
+				file.Truncate(0)
+				encoder := json.NewEncoder(file)
+				encoder.SetIndent("", "  ")
+				if err := encoder.Encode(tokenData); err != nil {
+					fmt.Println(err)
+				}
+			}
+		}
+		numberWrite = 0
+		file.Seek(0, 0)
+		file.Truncate(0)
+		encoder := json.NewEncoder(file)
+		encoder.SetIndent("", "  ")
+		if err := encoder.Encode(tokenData); err != nil {
+			fmt.Println(err)
+		}
 	}
 
 }
