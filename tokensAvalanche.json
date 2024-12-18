@@ -596,7 +596,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "11293"
+      "CmcID": "14699"
     },
     "0x75739a693459f33b1fbcc02099eea3ebcf150cbe": {
       "address": "0x75739a693459f33b1fbcc02099eea3ebcf150cbe",
@@ -853,7 +853,7 @@
         "PEG:AVAX",
         "tokens"
       ],
-      "CmcID": "9462"
+      "CmcID": "2396"
     },
     "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": {
       "address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
@@ -868,7 +868,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "3408"
+      "CmcID": "9462"
     },
     "0xbf1230bb63bfd7f5d628ab7b543bcefa8a24b81b": {
       "address": "0xbf1230bb63bfd7f5d628ab7b543bcefa8a24b81b",
@@ -1017,7 +1017,7 @@
         "GROUP:FRAX",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "6952"
     },
     "0xd45b7c061016102f9fa220502908f2c0f1add1d7": {
       "address": "0xd45b7c061016102f9fa220502908f2c0f1add1d7",
@@ -1139,7 +1139,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "19538"
     },
     "0xf693248f96fe03422fea95ac0afbbbc4a8fdd172": {
       "address": "0xf693248f96fe03422fea95ac0afbbbc4a8fdd172",

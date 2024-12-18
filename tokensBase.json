@@ -22,6 +22,7 @@
       "eip2612": false,
       "tags": [
         "crosschain",
+        "GROUP:VIRTUAL",
         "tokens"
       ],
       "CmcID": "29420"
@@ -253,7 +254,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "32774"
+      "CmcID": "19191"
     },
     "0x489fe42c267fe0366b16b0c39e7aeef977e841ef": {
       "address": "0x489fe42c267fe0366b16b0c39e7aeef977e841ef",
@@ -311,7 +312,7 @@
       "decimals": 18,
       "name": "Savings USDS",
       "logoURI": "",
-      "eip2612": true,
+      "eip2612": false,
       "tags": [
         "crosschain",
         "tokens"
@@ -379,7 +380,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "6758"
     },
     "0x7f5373ae26c3e8ffc4c77b7255df7ec1a9af52a6": {
       "address": "0x7f5373ae26c3e8ffc4c77b7255df7ec1a9af52a6",
@@ -413,7 +414,7 @@
       "symbol": "USDS",
       "decimals": 18,
       "name": "USDS Stablecoin",
-      "logoURI": "https://tokens-data.1inch.io/images/8453/0x820c137fa70c8691f0e44dc420a5e53c168921dc.webp",
+      "logoURI": "https://tokens-data.1inch.io/images/8453/0x820c137fa70c8691f0e44dc420a5e53c168921dc_0x51a2f77153cdea2e4aa8bc8ab5469e949f765df8b1daa448f1ce29d29faaf0e7.png",
       "eip2612": true,
       "tags": [
         "crosschain",
@@ -476,6 +477,21 @@
         "tokens"
       ],
       "CmcID": "29270"
+    },
+    "0x982f2df63fe38ab8d55f4b1464e8cfdc8ea5dec8": {
+      "address": "0x982f2df63fe38ab8d55f4b1464e8cfdc8ea5dec8",
+      "symbol": "sUSDS",
+      "decimals": 18,
+      "name": "Savings USDS",
+      "logoURI": "https://tokens-data.1inch.io/images/8453/0x982f2df63fe38ab8d55f4b1464e8cfdc8ea5dec8_0xc96b3b4c269e226d404e04a3538ab98af6a88a4db8ca856eb650e765973db6e7.svg",
+      "eip2612": true,
+      "tags": [
+        "crosschain",
+        "GROUP:sUSDS",
+        "PEG:USD",
+        "tokens"
+      ],
+      "CmcID": "0"
     },
     "0x9c7beba8f6ef6643abd725e45a4e8387ef260649": {
       "address": "0x9c7beba8f6ef6643abd725e45a4e8387ef260649",

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"my-echo-app/utils"
 	"net/http"
 	"os"
@@ -92,6 +93,68 @@ func (c Chain) GetCMCName() string {
 	return ""
 }
 
+type Coin struct {
+	ID             int       `json:"id"`
+	Name           string    `json:"name"`
+	Symbol         string    `json:"symbol"`
+	Slug           string    `json:"slug"`
+	NumMarketPairs int       `json:"num_market_pairs"`
+	DateAdded      time.Time `json:"date_added"`
+	Tags           []struct {
+		Slug     string `json:"slug"`
+		Name     string `json:"name"`
+		Category string `json:"category"`
+	} `json:"tags"`
+	MaxSupply         interface{} `json:"max_supply"`
+	CirculatingSupply interface{} `json:"circulating_supply"`
+	TotalSupply       float64     `json:"total_supply"`
+	Platform          struct {
+		ID           int    `json:"id"`
+		Name         string `json:"name"`
+		Symbol       string `json:"symbol"`
+		Slug         string `json:"slug"`
+		TokenAddress string `json:"token_address"`
+	} `json:"platform"`
+	IsActive                      int         `json:"is_active"`
+	InfiniteSupply                bool        `json:"infinite_supply"`
+	CmcRank                       int         `json:"cmc_rank"`
+	IsFiat                        int         `json:"is_fiat"`
+	SelfReportedCirculatingSupply interface{} `json:"self_reported_circulating_supply"`
+	SelfReportedMarketCap         interface{} `json:"self_reported_market_cap"`
+	TvlRatio                      float64     `json:"tvl_ratio"`
+	LastUpdated                   time.Time   `json:"last_updated"`
+	Quote                         struct {
+		USD struct {
+			Price                 float64   `json:"price"`
+			Volume24H             float64   `json:"volume_24h"`
+			VolumeChange24H       float64   `json:"volume_change_24h"`
+			PercentChange1H       float64   `json:"percent_change_1h"`
+			PercentChange24H      float64   `json:"percent_change_24h"`
+			PercentChange7D       float64   `json:"percent_change_7d"`
+			PercentChange30D      float64   `json:"percent_change_30d"`
+			PercentChange60D      float64   `json:"percent_change_60d"`
+			PercentChange90D      float64   `json:"percent_change_90d"`
+			MarketCap             float64   `json:"market_cap"`
+			MarketCapDominance    float64   `json:"market_cap_dominance"`
+			FullyDilutedMarketCap float64   `json:"fully_diluted_market_cap"`
+			Tvl                   float64   `json:"tvl"`
+			LastUpdated           time.Time `json:"last_updated"`
+		} `json:"USD"`
+	} `json:"quote"`
+}
+
+type CmcResponse struct {
+	Status struct {
+		Timestamp    time.Time   `json:"timestamp"`
+		ErrorCode    int         `json:"error_code"`
+		ErrorMessage interface{} `json:"error_message"`
+		Elapsed      int         `json:"elapsed"`
+		CreditCount  int         `json:"credit_count"`
+		Notice       interface{} `json:"notice"`
+	} `json:"status"`
+	Data map[string]Coin `json:"data"`
+}
+
 func fetchAndProcessURL(ch Chain) (utils.TokenData, error) {
 
 	url := fmt.Sprintf("https://api.vultisig.com/1inch/swap/v6.0/%v/tokens", ch.GetOneInchChainId())
@@ -154,6 +217,13 @@ func main() {
 		}
 
 		for key, value := range tokenData.Tokens {
+			/*
+				if value.CmcID != "0" {
+					if !checkID(value.Symbol, key, value.CmcID) {
+						fmt.Println(key, value.CmcID)
+					}
+				}
+			*/
 
 			if value.CmcID != "" {
 				continue
@@ -163,7 +233,6 @@ func main() {
 			time.Sleep(time.Second * 1)
 
 			for i := 0; i < 5; i++ {
-
 				cmcid, err = fetchTokenPrice(nameChain, tokenData.Tokens[key].Address)
 				if err != nil {
 
@@ -193,8 +262,42 @@ func main() {
 				utils.WriteFile(file, &tokenData)
 			}
 		}
+
 		utils.WriteFile(file, &tokenData)
+		//numberCmcid(tokenData, string(nameFile))
+
 	}
+}
+
+func checkID(nameChain, addres string, id string) bool {
+	var respostId CmcResponse
+	idInt, err := strconv.Atoi(id)
+	if err != nil {
+		return false
+	}
+	apiUrl := fmt.Sprintf("https://api.vultisig.com/cmc/v2/cryptocurrency/quotes/latest?id=%d", idInt)
+	resp, err := http.Get(apiUrl)
+	if err != nil {
+		return false
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return false
+	}
+
+	err = json.Unmarshal(body, &respostId)
+	if err != nil {
+		return false
+	}
+
+	m := respostId.Data[id]
+
+	if m.Symbol == nameChain && m.ID == idInt {
+		return true
+	}
+
+	return false
 
 }
 
@@ -221,14 +324,63 @@ func fetchTokenPrice(ch Chain, address string) (int, error) {
 	for _, pair := range tokenData.Data.Pairs {
 		if pair.PlatformName == ch.GetCMCName() {
 			if strings.EqualFold(pair.BaseToken.Address, address) {
-				return pair.BaseToken.ID, nil
+				if pair.BaseToken.ID.Set {
+					pair.BaseToken.ID.Value = strings.Trim(pair.BaseToken.ID.Value, "\"")
+
+					return strconv.Atoi(pair.BaseToken.ID.Value)
+				} else {
+					numebrName, err := strconv.Atoi(pair.BaseToken.Name)
+					if err == nil {
+						return numebrName, err
+					} else {
+						return numebrName, nil
+					}
+				}
 			}
 			if strings.EqualFold(pair.QuoteToken.Address, address) {
-				return pair.QuoteToken.ID, nil
+				if pair.QuoteToken.ID.Set {
+					pair.QuoteToken.ID.Value = strings.Trim(pair.QuoteToken.ID.Value, "\"")
+
+					return strconv.Atoi(pair.QuoteToken.ID.Value)
+
+				} else {
+					numebrName, err := strconv.Atoi(pair.QuoteToken.Name)
+					if err == nil {
+						return numebrName, err
+					} else {
+						return 0, nil
+					}
+				}
 			}
 		}
 
 	}
 	return 0, nil
 
+}
+
+func numberCmcid(tokenData utils.TokenData, namechain string) {
+	var z_cmcid int
+	var cmcid int
+	for _, value := range tokenData.Tokens {
+		if value.CmcID == "0" {
+			z_cmcid++
+		} else if value.CmcID != "0" {
+			cmcid++
+		}
+
+	}
+
+	file, err := os.OpenFile("file.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	result := fmt.Sprintf("%s\nallToken: %d\nCorrect cmcids: %d\ncmcids that are zero: %d\n\n",
+		namechain, len(tokenData.Tokens), cmcid, z_cmcid)
+	_, err = file.WriteString(result)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

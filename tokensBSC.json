@@ -273,7 +273,7 @@
         "GROUP:1INCH",
         "tokens"
       ],
-      "CmcID": "8104"
+      "CmcID": "0"
     },
     "0x12e34cdf6a031a10fe241864c32fb03a4fdad739": {
       "address": "0x12e34cdf6a031a10fe241864c32fb03a4fdad739",
@@ -327,7 +327,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "9767"
+      "CmcID": "0"
     },
     "0x14c358b573a4ce45364a3dbd84bbb4dae87af034": {
       "address": "0x14c358b573a4ce45364a3dbd84bbb4dae87af034",
@@ -825,7 +825,7 @@
         "GROUP:GAIA",
         "tokens"
       ],
-      "CmcID": "12650"
+      "CmcID": "0"
     },
     "0x352cb5e19b12fc216548a2677bd0fce83bae434b": {
       "address": "0x352cb5e19b12fc216548a2677bd0fce83bae434b",
@@ -1018,7 +1018,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "4206"
+      "CmcID": "2563"
     },
     "0x411ec510c85c9e56271bf4e10364ffa909e685d9": {
       "address": "0x411ec510c85c9e56271bf4e10364ffa909e685d9",
@@ -1832,7 +1832,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "8684"
     },
     "0x67d66e8ec1fd25d98b3ccd3b19b7dc4b4b7fc493": {
       "address": "0x67d66e8ec1fd25d98b3ccd3b19b7dc4b4b7fc493",
@@ -1928,7 +1928,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "9297"
+      "CmcID": "7186"
     },
     "0x6bff4fb161347ad7de4a625ae5aa3a1ca7077819": {
       "address": "0x6bff4fb161347ad7de4a625ae5aa3a1ca7077819",
@@ -2273,6 +2273,20 @@
       ],
       "CmcID": "0"
     },
+    "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+      "address": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+      "symbol": "VANA",
+      "decimals": 18,
+      "name": "Vana",
+      "logoURI": "",
+      "eip2612": false,
+      "tags": [
+        "crosschain",
+        "GROUP:VANA",
+        "tokens"
+      ],
+      "CmcID": "0"
+    },
     "0x810ee35443639348adbbc467b33310d2ab43c168": {
       "address": "0x810ee35443639348adbbc467b33310d2ab43c168",
       "symbol": "CYC",
@@ -2613,7 +2627,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "12238"
+      "CmcID": "9899"
     },
     "0x9096b4309224d751fcb43d7eb178dcffc122ad15": {
       "address": "0x9096b4309224d751fcb43d7eb178dcffc122ad15",
@@ -2640,7 +2654,7 @@
         "GROUP:FRAX",
         "tokens"
       ],
-      "CmcID": "10238"
+      "CmcID": "6952"
     },
     "0x90e767a68a7d707b74d569c8e79f9bbb79b98a8b": {
       "address": "0x90e767a68a7d707b74d569c8e79f9bbb79b98a8b",
@@ -2744,7 +2758,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "13523"
+      "CmcID": "0"
     },
     "0x94f559ae621f1c810f31a6a620ad7376776fe09e": {
       "address": "0x94f559ae621f1c810f31a6a620ad7376776fe09e",
@@ -2966,7 +2980,7 @@
         "GROUP:MULTI",
         "tokens"
       ],
-      "CmcID": "17050"
+      "CmcID": "0"
     },
     "0x9fd87aefe02441b123c3c32466cd9db4c578618f": {
       "address": "0x9fd87aefe02441b123c3c32466cd9db4c578618f",
@@ -3355,7 +3369,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "7158"
     },
     "0xaec945e04baf28b135fa7c640f624f8d90f1c3a6": {
       "address": "0xaec945e04baf28b135fa7c640f624f8d90f1c3a6",
@@ -3555,7 +3569,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "16359"
+      "CmcID": "0"
     },
     "0xb6c53431608e626ac81a9776ac3e999c5556717c": {
       "address": "0xb6c53431608e626ac81a9776ac3e999c5556717c",
@@ -3620,7 +3634,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "9400"
+      "CmcID": "0"
     },
     "0xba2ae424d960c26247dd6c32edc70b295c744c43": {
       "address": "0xba2ae424d960c26247dd6c32edc70b295c744c43",
@@ -3766,7 +3780,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "9798"
+      "CmcID": "0"
     },
     "0xc10358f062663448a3489fc258139944534592ac": {
       "address": "0xc10358f062663448a3489fc258139944534592ac",
@@ -3900,6 +3914,19 @@
       ],
       "CmcID": "12546"
     },
+    "0xc868edb715d724a40da28e039f24578a3fbba52a": {
+      "address": "0xc868edb715d724a40da28e039f24578a3fbba52a",
+      "symbol": "VANA",
+      "decimals": 18,
+      "name": "Vana",
+      "logoURI": "",
+      "eip2612": false,
+      "tags": [
+        "crosschain",
+        "tokens"
+      ],
+      "CmcID": "0"
+    },
     "0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51": {
       "address": "0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51",
       "symbol": "BUNNY",
@@ -4027,7 +4054,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "8204"
+      "CmcID": "0"
     },
     "0xd17479997f34dd9156deef8f95a52d81d265be9c": {
       "address": "0xd17479997f34dd9156deef8f95a52d81d265be9c",
@@ -5068,7 +5095,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "9239"
+      "CmcID": "7186"
     },
     "0xfb52fc1f90dd2b070b9cf7ad68ac3d68905643fa": {
       "address": "0xfb52fc1f90dd2b070b9cf7ad68ac3d68905643fa",

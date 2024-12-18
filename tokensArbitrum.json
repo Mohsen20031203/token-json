@@ -177,7 +177,7 @@
         "GROUP:DFX",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "8666"
     },
     "0x2e9a6df78e42a30712c10a9dc4b1c8656f8f2879": {
       "address": "0x2e9a6df78e42a30712c10a9dc4b1c8656f8f2879",
@@ -235,7 +235,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "28443"
     },
     "0x32eb7902d4134bf98a28b963d26de779af92a212": {
       "address": "0x32eb7902d4134bf98a28b963d26de779af92a212",
@@ -603,7 +603,7 @@
         "GROUP:W",
         "tokens"
       ],
-      "CmcID": "29587"
+      "CmcID": "0"
     },
     "0xb2f30a7c980f052f02563fb518dcc39e6bf38175": {
       "address": "0xb2f30a7c980f052f02563fb518dcc39e6bf38175",
@@ -913,7 +913,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "18852"
+      "CmcID": "3408"
     }
   }
 }
