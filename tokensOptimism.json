@@ -122,7 +122,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": "28443"
+      "CmcID": "0"
     },
     "0x350a791bfc2c21f9ed5d10980dad2e2638ffa7f6": {
       "address": "0x350a791bfc2c21f9ed5d10980dad2e2638ffa7f6",
@@ -150,7 +150,7 @@
         "GROUP:alETH",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "23225"
     },
     "0x4200000000000000000000000000000000000006": {
       "address": "0x4200000000000000000000000000000000000006",
@@ -205,7 +205,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "16991"
+      "CmcID": "2396"
     },
     "0x68f180fcce6836688e9084f035309e29bf0a2095": {
       "address": "0x68f180fcce6836688e9084f035309e29bf0a2095",
@@ -278,7 +278,7 @@
         "PEG:BTC",
         "tokens"
       ],
-      "CmcID": "2396"
+      "CmcID": "33513"
     },
     "0x76fb31fb4af56892a25e32cfc43de717950c9278": {
       "address": "0x76fb31fb4af56892a25e32cfc43de717950c9278",
@@ -665,7 +665,7 @@
         "GROUP:WCT",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "2396"
     },
     "0xf98dcd95217e15e05d8638da4c91125e59590b07": {
       "address": "0xf98dcd95217e15e05d8638da4c91125e59590b07",

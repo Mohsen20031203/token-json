@@ -177,7 +177,7 @@
         "GROUP:DFX",
         "tokens"
       ],
-      "CmcID": "8666"
+      "CmcID": "0"
     },
     "0x2e9a6df78e42a30712c10a9dc4b1c8656f8f2879": {
       "address": "0x2e9a6df78e42a30712c10a9dc4b1c8656f8f2879",
@@ -533,7 +533,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "21601"
+      "CmcID": "2396"
     },
     "0x9623063377ad1b27544c965ccd7342f7ea7e88c7": {
       "address": "0x9623063377ad1b27544c965ccd7342f7ea7e88c7",
@@ -631,7 +631,7 @@
         "GROUP:RPL",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "12147"
     },
     "0xba5ddd1f9d7f570dc94a51479a000e3bce967196": {
       "address": "0xba5ddd1f9d7f570dc94a51479a000e3bce967196",

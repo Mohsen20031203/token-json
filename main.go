@@ -326,30 +326,17 @@ func fetchTokenPrice(ch Chain, address string) (int, error) {
 			if strings.EqualFold(pair.BaseToken.Address, address) {
 				if pair.BaseToken.ID.Set {
 					pair.BaseToken.ID.Value = strings.Trim(pair.BaseToken.ID.Value, "\"")
-
 					return strconv.Atoi(pair.BaseToken.ID.Value)
 				} else {
-					numebrName, err := strconv.Atoi(pair.BaseToken.Name)
-					if err == nil {
-						return numebrName, err
-					} else {
-						return numebrName, nil
-					}
+					continue
 				}
 			}
 			if strings.EqualFold(pair.QuoteToken.Address, address) {
 				if pair.QuoteToken.ID.Set {
 					pair.QuoteToken.ID.Value = strings.Trim(pair.QuoteToken.ID.Value, "\"")
-
 					return strconv.Atoi(pair.QuoteToken.ID.Value)
-
 				} else {
-					numebrName, err := strconv.Atoi(pair.QuoteToken.Name)
-					if err == nil {
-						return numebrName, err
-					} else {
-						return 0, nil
-					}
+					continue
 				}
 			}
 		}

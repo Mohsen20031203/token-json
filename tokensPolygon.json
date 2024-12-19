@@ -200,7 +200,7 @@
         "GROUP:CRV",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "6538"
     },
     "0x187ae45f2d361cbce37c6a8622119c91148f261b": {
       "address": "0x187ae45f2d361cbce37c6a8622119c91148f261b",
@@ -619,7 +619,7 @@
         "GROUP:XZAR",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "3717"
     },
     "0x34d4ab47bee066f361fa52d792e69ac7bd05ee23": {
       "address": "0x34d4ab47bee066f361fa52d792e69ac7bd05ee23",
@@ -646,7 +646,7 @@
         "GROUP:SDT",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "10237"
     },
     "0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7": {
       "address": "0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7",
@@ -755,7 +755,7 @@
         "GROUP:USDC",
         "tokens"
       ],
-      "CmcID": "18852"
+      "CmcID": "2396"
     },
     "0x428360b02c1269bc1c79fbc399ad31d58c1e8fda": {
       "address": "0x428360b02c1269bc1c79fbc399ad31d58c1e8fda",
@@ -1120,7 +1120,7 @@
         "GROUP:UST",
         "tokens"
       ],
-      "CmcID": "7129"
+      "CmcID": "18852"
     },
     "0x695fc8b80f344411f34bdbcb4e621aa69ada384b": {
       "address": "0x695fc8b80f344411f34bdbcb4e621aa69ada384b",
@@ -1324,7 +1324,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "20169"
     },
     "0x840195888db4d6a99ed9f73fcd3b225bb3cb1a79": {
       "address": "0x840195888db4d6a99ed9f73fcd3b225bb3cb1a79",
@@ -1350,7 +1350,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "13341"
+      "CmcID": "12100"
     },
     "0x8839e639f210b80ffea73aedf51baed8dac04499": {
       "address": "0x8839e639f210b80ffea73aedf51baed8dac04499",
@@ -1417,7 +1417,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "2396"
     },
     "0x8f18dc399594b451eda8c5da02d0563c0b2d0f16": {
       "address": "0x8f18dc399594b451eda8c5da02d0563c0b2d0f16",
@@ -1524,7 +1524,7 @@
         "GROUP:BUSD",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "18852"
     },
     "0xa1428174f516f527fafdd146b883bb4428682737": {
       "address": "0xa1428174f516f527fafdd146b883bb4428682737",
@@ -1847,7 +1847,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "15257"
     },
     "0xc19669a405067927865b40ea045a2baabbbe57f5": {
       "address": "0xc19669a405067927865b40ea045a2baabbbe57f5",
@@ -2077,7 +2077,7 @@
         "GROUP:gOHM",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "2396"
     },
     "0xd93f7e271cb87c23aaa73edc008a79646d1f9912": {
       "address": "0xd93f7e271cb87c23aaa73edc008a79646d1f9912",
@@ -2229,7 +2229,7 @@
         "GROUP:PAR",
         "tokens"
       ],
-      "CmcID": "0"
+      "CmcID": "23800"
     },
     "0xe46b4a950c389e80621d10dfc398e91613c7e25e": {
       "address": "0xe46b4a950c389e80621d10dfc398e91613c7e25e",
@@ -2242,7 +2242,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": "2396"
+      "CmcID": "22035"
     },
     "0xe5417af564e4bfda1c483642db72007871397896": {
       "address": "0xe5417af564e4bfda1c483642db72007871397896",
