@@ -1,35 +1,35 @@
 tokensEthereum.json
 allToken: 1297
-Correct cmcids: 777
-cmcids that are zero: 520
+Correct cmcids: 878
+cmcids that are zero: 419
 
 tokensAvalanche.json
 allToken: 90
-Correct cmcids: 68
-cmcids that are zero: 22
+Correct cmcids: 31
+cmcids that are zero: 59
 
 tokensBase.json
-allToken: 60
-Correct cmcids: 36
-cmcids that are zero: 24
+allToken: 59
+Correct cmcids: 19
+cmcids that are zero: 40
 
 tokensArbitrum.json
 allToken: 66
-Correct cmcids: 50
-cmcids that are zero: 16
+Correct cmcids: 31
+cmcids that are zero: 35
 
 tokensPolygon.json
 allToken: 182
-Correct cmcids: 131
-cmcids that are zero: 51
+Correct cmcids: 90
+cmcids that are zero: 92
 
 tokensOptimism.json
 allToken: 49
-Correct cmcids: 27
-cmcids that are zero: 22
+Correct cmcids: 26
+cmcids that are zero: 23
 
 tokensBSC.json
-allToken: 399
-Correct cmcids: 323
-cmcids that are zero: 76
+allToken: 398
+Correct cmcids: 245
+cmcids that are zero: 153
 
