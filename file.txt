@@ -1,35 +1,140 @@
-tokensEthereum.json
-allToken: 1297
-Correct cmcids: 878
-cmcids that are zero: 419
-
-tokensAvalanche.json
-allToken: 90
-Correct cmcids: 31
-cmcids that are zero: 59
+tokensBSC.json
+allToken: 398
+Correct cmcids: 398
+cmcids that are zero: 0
 
 tokensBase.json
 allToken: 59
-Correct cmcids: 19
-cmcids that are zero: 40
+Correct cmcids: 59
+cmcids that are zero: 0
 
 tokensArbitrum.json
 allToken: 66
-Correct cmcids: 31
-cmcids that are zero: 35
+Correct cmcids: 66
+cmcids that are zero: 0
+
+tokensEthereum.json
+allToken: 1297
+Correct cmcids: 1297
+cmcids that are zero: 0
 
 tokensPolygon.json
 allToken: 182
-Correct cmcids: 90
-cmcids that are zero: 92
+Correct cmcids: 182
+cmcids that are zero: 0
 
 tokensOptimism.json
 allToken: 49
-Correct cmcids: 26
-cmcids that are zero: 23
+Correct cmcids: 49
+cmcids that are zero: 0
+
+tokensAvalanche.json
+allToken: 90
+Correct cmcids: 90
+cmcids that are zero: 0
 
 tokensBSC.json
 allToken: 398
-Correct cmcids: 245
-cmcids that are zero: 153
+Correct cmcids: 398
+cmcids that are zero: 0
+
+tokensBase.json
+allToken: 59
+Correct cmcids: 59
+cmcids that are zero: 0
+
+tokensArbitrum.json
+allToken: 66
+Correct cmcids: 66
+cmcids that are zero: 0
+
+tokensEthereum.json
+allToken: 1297
+Correct cmcids: 1297
+cmcids that are zero: 0
+
+tokensPolygon.json
+allToken: 182
+Correct cmcids: 182
+cmcids that are zero: 0
+
+tokensOptimism.json
+allToken: 49
+Correct cmcids: 49
+cmcids that are zero: 0
+
+tokensAvalanche.json
+allToken: 90
+Correct cmcids: 90
+cmcids that are zero: 0
+
+tokensBSC.json
+allToken: 398
+Correct cmcids: 398
+cmcids that are zero: 0
+
+tokensBase.json
+allToken: 59
+Correct cmcids: 59
+cmcids that are zero: 0
+
+tokensArbitrum.json
+allToken: 66
+Correct cmcids: 66
+cmcids that are zero: 0
+
+tokensEthereum.json
+allToken: 1297
+Correct cmcids: 1297
+cmcids that are zero: 0
+
+tokensPolygon.json
+allToken: 182
+Correct cmcids: 182
+cmcids that are zero: 0
+
+tokensOptimism.json
+allToken: 49
+Correct cmcids: 49
+cmcids that are zero: 0
+
+tokensAvalanche.json
+allToken: 90
+Correct cmcids: 90
+cmcids that are zero: 0
+
+tokensBSC.json
+allToken: 398
+Correct cmcids: 398
+cmcids that are zero: 0
+
+tokensBase.json
+allToken: 59
+Correct cmcids: 59
+cmcids that are zero: 0
+
+tokensArbitrum.json
+allToken: 66
+Correct cmcids: 66
+cmcids that are zero: 0
+
+tokensEthereum.json
+allToken: 1297
+Correct cmcids: 1297
+cmcids that are zero: 0
+
+tokensPolygon.json
+allToken: 182
+Correct cmcids: 182
+cmcids that are zero: 0
+
+tokensOptimism.json
+allToken: 49
+Correct cmcids: 49
+cmcids that are zero: 0
+
+tokensAvalanche.json
+allToken: 90
+Correct cmcids: 90
+cmcids that are zero: 0
 

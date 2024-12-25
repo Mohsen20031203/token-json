@@ -1,54 +1,112 @@
-package main
+/*
+	package main
 
-import (
+	import (
 	"fmt"
-)
+	)
 
-type Room struct {
-	Number     int
-	TypeRoom   int
-	PriceNight float32
-	Status     bool
-}
+	type Product struct {
+	Name     string
+	Price    float32
+	Number   uint
+	Category string
+	}
 
-type Rezerf struct {
-	NameCustomer string
-	NumberRoom   int
-	Start        string
-	NumberNight  int
-}
+	type Customer struct {
+	Name     string
+	Email    string
+	ListShop []Product
+	}
 
-type Hotel struct {
-	Rooms   []Room
-	Rezerfs []Rezerf
-}
+	type Shop struct {
+	Users    map[string]*Customer
+	Products map[string]*Product
+	}
 
-func (h *Hotel) AddRoom(number, typeRoom int, priceNight float32, status bool) error {
-	for _, room := range h.Rooms {
-		if room.Number == number {
-			return fmt.Errorf("found Room Error")
+	type Cliant interface {
+	AddProduct(name, category string, price float32, number uint) error
+	ListPrintProduct()
+	Shopping(nameUser, nameProduct string, number uint) error
+	ListShopUser(nameUser string) error
+	AddUser(name, email string) error
+	}
+
+	func newShopRoshd() Cliant {
+	return &Shop{}
+	}
+	func newShopKetab() Cliant {
+	return &Shop{}
+	}
+
+	func (s *Shop) AddProduct(name, category string, price float32, number uint) error {
+	if _, exists := s.Products[name]; exists {
+		return fmt.Errorf("product %s already exists", name)
+	}
+	p := &Product{Name: name, Price: price, Number: number, Category: category}
+	s.Products[name] = p
+	return nil
+	}
+
+	func (s *Shop) ListPrintProduct() {
+	for _, p := range s.Products {
+		if p.Number > 0 {
+			fmt.Println(*p)
 		}
-		h.Rooms = append(h.Rooms, Room{Number: number, TypeRoom: typeRoom, PriceNight: priceNight, Status: status})
+	}
+	}
+
+	func (s *Shop) Shopping(nameUser, nameProduct string, number uint) error {
+	customer, exists := s.Users[nameUser]
+	if !exists {
+		return fmt.Errorf("user %s not found", nameUser)
+	}
+
+	product, exists := s.Products[nameProduct]
+	if !exists {
+		return fmt.Errorf("product %s not found", nameProduct)
+	}
+
+	if product.Number < number {
+		return fmt.Errorf("not enough stock for product %s", nameProduct)
+	}
+
+	// Add product to customer's shopping list
+	customer.ListShop = append(customer.ListShop, *product)
+
+	// Decrease the product's number in stock
+	product.Number -= number
+	return nil
+	}
+
+	func (s *Shop) ListShopUser(nameUser string) error {
+	customer, exists := s.Users[nameUser]
+	if !exists {
+		return fmt.Errorf("user %s not found", nameUser)
+	}
+	fmt.Println("Shopping list for", nameUser)
+	for _, product := range customer.ListShop {
+		fmt.Println(product)
 	}
 	return nil
-}
-
-func (h *Hotel) ListStatusRoom() {
-	for _, room := range h.Rooms {
-		if !room.Status {
-			fmt.Println(room)
-		}
 	}
-}
 
-func (h *Hotel) RezervRoom(nameCustomer string, numberRoom int, start string, numberNight int) (bool, error) {
-	for _, room := range h.Rooms {
-		if room.Number == numberNight && !room.Status {
-			room.Status = true
-
-			h.Rezerfs = append(h.Rezerfs, Rezerf{NameCustomer: nameCustomer, NumberRoom: numberRoom, Start: start, NumberNight: numberNight})
-			return true, nil
-		}
+	func (s *Shop) AddUser(name, email string) error {
+	if _, exists := s.Users[name]; exists {
+		return fmt.Errorf("user %s already exists", name)
 	}
-	return false, fmt.Errorf("not found error")
-}
+	c := &Customer{Name: name, Email: email}
+	s.Users[name] = c
+	return nil
+	}
+
+	func main() {
+	var varShop Cliant
+
+	varShop = newShopKetab()
+
+	varShop.ListPrintProduct()
+
+	}
+*/
+
+package main
