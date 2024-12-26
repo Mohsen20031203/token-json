@@ -37,7 +37,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x12418783e860997eb99e8acf682df952f721cf62": {
       "address": "0x12418783e860997eb99e8acf682df952f721cf62",
@@ -52,7 +52,7 @@
         "PEG:BTC",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x18dd5b087bca9920562aff7a0199b96b9230438b": {
       "address": "0x18dd5b087bca9920562aff7a0199b96b9230438b",
@@ -105,7 +105,7 @@
         "GROUP:SNX",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x236aa50979d5f3de3bd1eeb40e81137f22ab794b": {
       "address": "0x236aa50979d5f3de3bd1eeb40e81137f22ab794b",
@@ -185,7 +185,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x3992b27da26848c2b19cea6fd25ad5568b68ab98": {
       "address": "0x3992b27da26848c2b19cea6fd25ad5568b68ab98",
@@ -212,7 +212,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x4158734d47fc9692176b5085e0f52ee0da5d47f1": {
       "address": "0x4158734d47fc9692176b5085e0f52ee0da5d47f1",
@@ -224,7 +224,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x4200000000000000000000000000000000000006": {
       "address": "0x4200000000000000000000000000000000000006",
@@ -267,7 +267,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x4ed4e862860bed51a9570b96d89af5e1b0efefed": {
       "address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
@@ -328,7 +328,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x6653dd4b92a0e5bf8ae570a98906d9d6fd2eec09": {
       "address": "0x6653dd4b92a0e5bf8ae570a98906d9d6fd2eec09",
@@ -381,7 +381,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x7fcd174e80f264448ebee8c88a7c4476aaf58ea6": {
       "address": "0x7fcd174e80f264448ebee8c88a7c4476aaf58ea6",
@@ -394,7 +394,7 @@
         "PEG:ETH",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x820c137fa70c8691f0e44dc420a5e53c168921dc": {
       "address": "0x820c137fa70c8691f0e44dc420a5e53c168921dc",
@@ -408,7 +408,7 @@
         "GROUP:USDS",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
       "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
@@ -478,7 +478,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x9c7beba8f6ef6643abd725e45a4e8387ef260649": {
       "address": "0x9c7beba8f6ef6643abd725e45a4e8387ef260649",
@@ -504,7 +504,7 @@
         "GROUP:COMP",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239": {
       "address": "0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239",
@@ -516,7 +516,7 @@
       "tags": [
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xa7d68d155d17cb30e311367c2ef1e82ab6022b67": {
       "address": "0xa7d68d155d17cb30e311367c2ef1e82ab6022b67",
@@ -569,7 +569,7 @@
         "GROUP:rETH",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xb79dd08ea68a908a97220c76d19a6aa9cbde4376": {
       "address": "0xb79dd08ea68a908a97220c76d19a6aa9cbde4376",
@@ -638,7 +638,7 @@
         "PEG:ETH",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xc3de830ea07524a0761646a6a4e4be0e114a3c83": {
       "address": "0xc3de830ea07524a0761646a6a4e4be0e114a3c83",
@@ -652,7 +652,7 @@
         "GROUP:UNISWAP",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xc5fecc3a29fb57b5024eec8a2239d4621e111cbe": {
       "address": "0xc5fecc3a29fb57b5024eec8a2239d4621e111cbe",
@@ -666,7 +666,7 @@
         "GROUP:1INCH",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
       "address": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
@@ -706,7 +706,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca": {
       "address": "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
@@ -733,7 +733,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xeb466342c4d449bc9f53a865d5cb90586f405215": {
       "address": "0xeb466342c4d449bc9f53a865d5cb90586f405215",

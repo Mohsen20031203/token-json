@@ -148,7 +148,7 @@
         "GROUP:FXS",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x22d4002028f537599be9f666d1c4fa138522f9c8": {
       "address": "0x22d4002028f537599be9f666d1c4fa138522f9c8",
@@ -217,7 +217,7 @@
         "GROUP:gOHM",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x346a59146b9b4a77100d369a3d18e8007a9f46a6": {
       "address": "0x346a59146b9b4a77100d369a3d18e8007a9f46a6",
@@ -269,7 +269,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x47afa96cdc9fab46904a55a6ad4bf6660b53c38a": {
       "address": "0x47afa96cdc9fab46904a55a6ad4bf6660b53c38a",
@@ -283,7 +283,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x488f73cddda1de3664775ffd91623637383d6404": {
       "address": "0x488f73cddda1de3664775ffd91623637383d6404",
@@ -338,7 +338,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x50b7545627a5162f82a992c33b87adc75187b218": {
       "address": "0x50b7545627a5162f82a992c33b87adc75187b218",
@@ -353,7 +353,7 @@
         "PEG:BTC",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x532e6537fea298397212f09a61e03311686f548e": {
       "address": "0x532e6537fea298397212f09a61e03311686f548e",
@@ -367,7 +367,7 @@
         "PEG:USD",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x53f7c5869a859f0aec3d334ee8b4cf01e3492f21": {
       "address": "0x53f7c5869a859f0aec3d334ee8b4cf01e3492f21",
@@ -381,7 +381,7 @@
         "PEG:ETH",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x544c42fbb96b39b21df61cf322b5edc285ee7429": {
       "address": "0x544c42fbb96b39b21df61cf322b5edc285ee7429",
@@ -490,7 +490,7 @@
         "GROUP:AAVE",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x65378b697853568da9ff8eab60c13e1ee9f4a654": {
       "address": "0x65378b697853568da9ff8eab60c13e1ee9f4a654",
@@ -517,7 +517,7 @@
         "PEG:BTC",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0x69260b9483f9871ca57f81a90d91e2f96c2cd11d": {
       "address": "0x69260b9483f9871ca57f81a90d91e2f96c2cd11d",
@@ -800,7 +800,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xb262a485d98d8e19175818d47453e7812ca255a8": {
       "address": "0xb262a485d98d8e19175818d47453e7812ca255a8",
@@ -813,7 +813,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xb27c8941a7df8958a1778c0259f76d1f8b711c35": {
       "address": "0xb27c8941a7df8958a1778c0259f76d1f8b711c35",
@@ -1030,7 +1030,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xd586e7f844cea2f87f50152665bcbc2c279d8d70": {
       "address": "0xd586e7f844cea2f87f50152665bcbc2c279d8d70",
@@ -1058,7 +1058,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     },
     "0xe896cdeaac9615145c0ca09c8cd5c25bced6384c": {
       "address": "0xe896cdeaac9615145c0ca09c8cd5c25bced6384c",
@@ -1220,7 +1220,7 @@
         "crosschain",
         "tokens"
       ],
-      "CmcID": ""
+      "CmcID": "0"
     }
   }
 }
